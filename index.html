@@ -3,86 +3,145 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>LEHO LEGO Style</title>
+<title>LEHO LEGO Style Wild</title>
 <style>
   body {
-    background: #e0e0e0;
+    background: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%);
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
-  .lego-container {
+  .lego-scene {
     display: flex;
-    gap: 20px;
+    gap: 30px;
+    perspective: 800px;
   }
-  .block {
-    position: relative;
-    width: 100px;
+  .lego-set {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transform-style: preserve-3d;
+  }
+
+  .lego-block {
+    width: 110px;
     height: 140px;
-    border-radius: 10px;
-    box-shadow: 0 6px 9px rgba(0,0,0,0.3);
+    border-radius: 16px;
+    box-shadow: 0 15px 25px rgba(0,0,0,0.35);
     color: white;
+    font-weight: 900;
     font-size: 72px;
-    font-weight: bold;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    text-align: center;
+    line-height: 140px;
+    letter-spacing: 15px;
     text-transform: uppercase;
-    letter-spacing: 10px;
-    cursor: default;
+    user-select: none;
+    position: relative;
+    transform-style: preserve-3d;
+    animation: bounce 4s ease-in-out infinite;
   }
-  /* LEGO colors for each letter block */
-  .block.l {
-    background: #f44336; /* red */
+
+  .lego-block:nth-child(odd) {
+    animation-delay: 0s;
   }
-  .block.e {
-    background: #2196f3; /* blue */
+  .lego-block:nth-child(even) {
+    animation-delay: 2s;
   }
-  .block.h {
-    background: #ffeb3b; /* yellow */
-    color: black;
-  }
-  .block.o {
-    background: #4caf50; /* green */
-  }
-  /* Add cylindrical bumps as the LEGO knobs */
-  .block::before {
+
+  /* Colors for each letter in vibrant LEGO tones */
+  .l { background: #d32f2f; }
+  .e { background: #1976d2; }
+  .h { background: #fbc02d; color: #222; }
+  .o { background: #388e3c; }
+
+  /* Lego Cylindrical knobs on top */
+  .lego-block::before {
     content: "";
     position: absolute;
-    top: 15px;
-    left: 12px;
-    width: 20px;
-    height: 20px;
+    top: 18px;
+    left: 15px;
+    width: 22px;
+    height: 22px;
     background: inherit;
     border-radius: 50%;
     box-shadow:
-      35px 0 0 0 inherit,
-      70px 0 0 0 inherit;
+      38px 0 0 0 inherit,
+      76px 0 0 0 inherit;
+    filter: brightness(1.15);
+    transform: translateZ(12px);
   }
-  .block::after {
+  .lego-block::after {
     content: "";
     position: absolute;
-    top: 47px;
-    left: 12px;
-    width: 20px;
-    height: 20px;
+    top: 54px;
+    left: 15px;
+    width: 22px;
+    height: 22px;
     background: inherit;
     border-radius: 50%;
     box-shadow:
-      35px 0 0 0 inherit,
-      70px 0 0 0 inherit;
+      38px 0 0 0 inherit,
+      76px 0 0 0 inherit;
+    filter: brightness(0.9);
+    transform: translateZ(6px);
+  }
+
+  /* 3D depth and shading */
+  .lego-block span {
+    position: relative;
+    z-index: 2;
+  }
+  .lego-block-shadow {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(rgba(0,0,0,.2), transparent);
+    border-radius: 16px;
+    transform: translateZ(-5px);
+    z-index: 1;
+  }
+
+  /* Stacked sets */
+  .stack-1 {
+    transform: rotateX(15deg) rotateY(-20deg);
+  }
+  .stack-2 {
+    transform: rotateX(12deg) rotateY(10deg);
+  }
+  .stack-3 {
+    transform: rotateX(-12deg) rotateY(-15deg);
+  }
+
+  /* Gentle bounce animation */
+  @keyframes bounce {
+    0%, 100% { transform: translateZ(0) translateY(0); }
+    50% { transform: translateZ(15px) translateY(-10px); }
   }
 </style>
 </head>
 <body>
-  <div class="lego-container">
-    <div class="block l">L</div>
-    <div class="block e">E</div>
-    <div class="block h">H</div>
-    <div class="block o">O</div>
+  <div class="lego-scene">
+    <div class="lego-set stack-1" aria-label="LEHO blocks set 1">
+      <div class="lego-block l"><span>L</span><div class="lego-block-shadow"></div></div>
+      <div class="lego-block e"><span>E</span><div class="lego-block-shadow"></div></div>
+      <div class="lego-block h"><span>H</span><div class="lego-block-shadow"></div></div>
+      <div class="lego-block o"><span>O</span><div class="lego-block-shadow"></div></div>
+    </div>
+    <div class="lego-set stack-2" aria-label="LEHO blocks set 2">
+      <div class="lego-block o"><span>O</span><div class="lego-block-shadow"></div></div>
+      <div class="lego-block h"><span>H</span><div class="lego-block-shadow"></div></div>
+      <div class="lego-block e"><span>E</span><div class="lego-block-shadow"></div></div>
+      <div class="lego-block l"><span>L</span><div class="lego-block-shadow"></div></div>
+    </div>
+    <div class="lego-set stack-3" aria-label="LEHO blocks set 3">
+      <div class="lego-block e"><span>E</span><div class="lego-block-shadow"></div></div>
+      <div class="lego-block l"><span>L</span><div class="lego-block-shadow"></div></div>
+      <div class="lego-block o"><span>O</span><div class="lego-block-shadow"></div></div>
+      <div class="lego-block h"><span>H</span><div class="lego-block-shadow"></div></div>
+    </div>
   </div>
 </body>
 </html>
