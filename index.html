@@ -1,10 +1,88 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>My GitHub Pages Site</title>
-  </head>
-  <body>
-    <h1>Hello, world!</h1>
-    <p>Welcome to my GitHub Pages site!</p>
-  </body>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>LEHO LEGO Style</title>
+<style>
+  body {
+    background: #e0e0e0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  .lego-container {
+    display: flex;
+    gap: 20px;
+  }
+  .block {
+    position: relative;
+    width: 100px;
+    height: 140px;
+    border-radius: 10px;
+    box-shadow: 0 6px 9px rgba(0,0,0,0.3);
+    color: white;
+    font-size: 72px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    letter-spacing: 10px;
+    cursor: default;
+  }
+  /* LEGO colors for each letter block */
+  .block.l {
+    background: #f44336; /* red */
+  }
+  .block.e {
+    background: #2196f3; /* blue */
+  }
+  .block.h {
+    background: #ffeb3b; /* yellow */
+    color: black;
+  }
+  .block.o {
+    background: #4caf50; /* green */
+  }
+  /* Add cylindrical bumps as the LEGO knobs */
+  .block::before {
+    content: "";
+    position: absolute;
+    top: 15px;
+    left: 12px;
+    width: 20px;
+    height: 20px;
+    background: inherit;
+    border-radius: 50%;
+    box-shadow:
+      35px 0 0 0 inherit,
+      70px 0 0 0 inherit;
+  }
+  .block::after {
+    content: "";
+    position: absolute;
+    top: 47px;
+    left: 12px;
+    width: 20px;
+    height: 20px;
+    background: inherit;
+    border-radius: 50%;
+    box-shadow:
+      35px 0 0 0 inherit,
+      70px 0 0 0 inherit;
+  }
+</style>
+</head>
+<body>
+  <div class="lego-container">
+    <div class="block l">L</div>
+    <div class="block e">E</div>
+    <div class="block h">H</div>
+    <div class="block o">O</div>
+  </div>
+</body>
 </html>
